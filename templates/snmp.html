@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{%  load snmp %}
+{% block content %}
+
+    {% regroup object_list by tipo as host_list %}
+
+
+
+
+    {% for host in host_list %}
+            <div class="row">
+            <H1>SNMP: {{ host.snmp }}</H1>
+
+            {% for host in host.list %}
+
+
+
+                 <div class="col-sm-2 " >
+                    <div class="card bg-light " style="width: 15rem;margin-bottom: 2px">
+                      <div class="card-body">
+
+                           <h2>{{ host.nome }}</h2>
+
+                          <a href="http://{{ host.ipv4 }}" target="_blank">{{ host.ipv4 }}</a><br/>
+                               {% if host.tipo__snmp__titulo is not None %}
+                                {{ host.tipo__snmp__titulo }}: {% autoescape off %}{% snmptag host.ipv4 host.tipo__snmp__template host.tipo__snmp__comunidade host.tipo__snmp__oid %}{% endautoescape %}
+                               {% endif %}
+                            <small>
+                                <br/>{% now "SHORT_DATETIME_FORMAT" %}
+                           </small>
+                      </div>
+                    </div>
+                 </div>
+
+
+            {% endfor %}
+
+            </div>
+    {% endfor %}
+
+
+
+{% endblock %}

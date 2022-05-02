@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    {% regroup object_list by tipo as host_list %}
+
+
+
+
+    {% for host in host_list %}
+            <div class="row">
+            <H1>PING: {{ host.grouper }}</H1>
+
+            {% for host in host.list %}
+
+
+
+                 <div class="col-sm-2 " >
+                    <div class="card {% if host.status %}bg-success{% else %}bg-danger{% endif %} text-white" style="width: 15rem;margin-bottom: 2px">
+                      <div class="card-body">
+
+                           <h2>{{ host.nome }}</h2>
+
+                          <a href="http://{{ host.ipv4 }}" target="_blank">{{ host.ipv4 }}</a><br/>
+                           <small>
+                          {{ host.status }}<br/>
+                          {% now "SHORT_DATETIME_FORMAT" %}</small>
+                      </div>
+                    </div>
+                 </div>
+
+
+            {% endfor %}
+
+            </div>
+    {% endfor %}
+
+
+
+{% endblock %}
