@@ -1,0 +1,10 @@
+asgiref==3.5.0
+backports.zoneinfo==0.2.1
+Django==4.0.4
+ping3==4.0.3
+ply==3.11
+pyasn1==0.4.8
+pycryptodomex==3.14.1
+pysmi==0.3.4
+pysnmp==4.4.12
+sqlparse==0.4.2
