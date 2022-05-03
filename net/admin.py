@@ -23,3 +23,4 @@ class TipoAdmin(admin.ModelAdmin):
 @admin.register(Host)
 class HostAdmin(admin.ModelAdmin):
     list_display = ['nome','id', 'bloco', 'ipv4', 'net_name', 'tipo']
+    list_filter = ['tipo']
