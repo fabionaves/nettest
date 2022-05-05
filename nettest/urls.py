@@ -16,10 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from net.views import HostView, PingView, TipoListView, SnmpView
+from net.views import HostView, PingView, TipoListView, SnmpView, InterfaceView
 
 urlpatterns = [
     path('', TipoListView.as_view(), name='index'),
+    path('host/<int:pk>/interface/<str:interface>/', InterfaceView.as_view(), name='interface'),
     path('host/<int:pk>/', HostView.as_view(), name='host'),
     path('tipo/', TipoListView.as_view(), name='tipolist'),
     path('ping/<int:pk>/', PingView.as_view(), name='ping'),

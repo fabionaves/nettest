@@ -1,5 +1,33 @@
-"nome": "{{ object.nome }}",
-"IPv4": "{{ object.ipv4 }}",
-"Tipo": "{{ object.tipo }}",
-"Status": "{{ object.status }}"
+{% extends 'base.html' %}
+{%  load snmp %}
+{% block content %}
+  <div class="container " >
+    <ul class="list-group">
+      <li class="list-group-item {% if object.status %}bg-success{% else %}bg-danger{% endif %} text-white">
+          <h2>{{ object.nome }}</h2>
+
+                          <a href="http://{{ object.ipv4 }}" target="_blank">{{ object.ipv4 }}</a><br/>
+                           <small>
+                          {{ object.status }}<br/>
+                          {% now "SHORT_DATETIME_FORMAT" %}</small>
+      </li>
+      <li class="list-group-item">
+          Interfaces:
+          <ul class="list-group">
+                {%  for interface in interfaces %}
+                    <li class="list-group-item {% if interface.status == '1'%}list-group-item-success{% else %}list-group-item-secondary{% endif %} ">
+                        <A HREF="interface/{{ interface.id }}"> {{ interface.name }}</A>
+                    </li>
+                {% endfor %}
+          </ul>
+      </li>
+    </ul>
+  </div>
+
+
+
+{% endblock %}
+
+
+
 

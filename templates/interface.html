@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{%  load snmp %}
+{% block content %}
+  <div class="container " >
+    <ul class="list-group">
+      <li class="list-group-item">
+          <h2>{{ object.nome }}</h2>
+
+                          <a href="http://{{ object.ipv4 }}" target="_blank">{{ object.ipv4 }}</a><br/>
+
+                            INTERFACE: {{ interface.name }}<br>
+                            IN: {{ interface.traffic_in }} Mbps<br>
+                            OUT: {{ interface.traffic_out }} Mbps<br>
+                        <br/>
+
+                          {% now "SHORT_DATETIME_FORMAT" %}
+      </li>
+    </ul>
+  </div>
+
+
+
+{% endblock %}
+
+
+
+

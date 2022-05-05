@@ -22,7 +22,8 @@
 
                           <a href="http://{{ host.ipv4 }}" target="_blank">{{ host.ipv4 }}</a><br/>
                            <small>
-                          {{ host.status }}<br/>
+                               {{ host.status }} <a href="/host/{{ host.pk }}/" class="text-white">[Interfaces]</a>
+                               <br/>
                           {% now "SHORT_DATETIME_FORMAT" %}</small>
                       </div>
                     </div>

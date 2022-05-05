@@ -30,6 +30,7 @@ class Host(models.Model):
     net_name = models.CharField('Nome na Rede', max_length=100, blank=True, null=True)
     tipo = models.ForeignKey(Tipo, on_delete=models.PROTECT, null=False, blank=False)
     bloco = models.ForeignKey(Bloco, on_delete=models.PROTECT, null=True, blank=True)
+    snmp_comunidade = models.CharField('SNMP Comunidade', max_length=100, blank=True, null=True, default='public')
 
     @property
     def status(self):
@@ -54,7 +55,6 @@ class Snmp(models.Model):
     tipo = models.ForeignKey(Tipo, on_delete=models.PROTECT, null=False, blank=False)
     titulo = models.CharField('Título', max_length=100, blank=True, null=True)
     oid = models.CharField('Oid', max_length=100, blank=True, null=True)
-    comunidade = models.CharField('Comunidade', max_length=100, blank=False, null=False, default='public')
     template = models.TextField('Template', blank=True, null=True, help_text='Utilize a variavel {{value}} e configure a exibição do valor obtido via SNMP')
 
 
