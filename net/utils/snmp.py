@@ -46,16 +46,16 @@ def interfaces(host, comunity):
 
 
 def interface(host, comunity, interface_number):
-    valorin1 = int(snmp('10.4.0.205','public', 'iso.3.6.1.2.1.2.2.1.10.'+interface_number))
-    valorout1 = int(snmp('10.4.0.205', 'public', 'iso.3.6.1.2.1.2.2.1.16.'+interface_number))
+    valorin1 = int(snmp(host, comunity, 'iso.3.6.1.2.1.2.2.1.10.'+interface_number))
+    valorout1 = int(snmp(host, comunity, 'iso.3.6.1.2.1.2.2.1.16.'+interface_number))
     time.sleep(1)
-    valorin2 = int(snmp('10.4.0.205','public', 'iso.3.6.1.2.1.2.2.1.10.'+interface_number))
-    valorout2 = int(snmp('10.4.0.205', 'public', 'iso.3.6.1.2.1.2.2.1.16.'+interface_number))
+    valorin2 = int(snmp(host, comunity, 'iso.3.6.1.2.1.2.2.1.10.'+interface_number))
+    valorout2 = int(snmp(host, comunity, 'iso.3.6.1.2.1.2.2.1.16.'+interface_number))
     retorno = {}
     retorno['traffic_in'] = ((valorin2-valorin1)*8)/1000000
     retorno['traffic_out'] = ((valorout2 - valorout1) * 8) / 1000000
-    retorno['name'] = str(snmp('10.4.0.205','public', 'iso.3.6.1.2.1.2.2.1.2.'+interface_number))
-    retorno['status'] = str(snmp('10.4.0.205', 'public', 'iso.3.6.1.2.1.2.2.1.8.' + interface_number))
+    retorno['name'] = str(snmp(host, comunity, 'iso.3.6.1.2.1.2.2.1.2.'+interface_number))
+    retorno['status'] = str(snmp(host, comunity, 'iso.3.6.1.2.1.2.2.1.8.' + interface_number))
     return retorno
 
 """
